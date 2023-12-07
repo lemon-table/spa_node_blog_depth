@@ -19,13 +19,26 @@ export class ProductsRepository {
       select: {
         productId: true,
         title: true,
-        content: true,
         status: true,
         createdAt: true,
       },
       orderBy: {
         createdAt: sort ? sort : "desc",
       },
+    });
+    return readProduct;
+  };
+
+  readDetProduct = async (Id) => {
+    const readProduct = await this.prisma.products.findFirst({
+      select: {
+        productId: true,
+        title: true,
+        content: true,
+        status: true,
+        createdAt: true,
+      },
+      where: { productId: +Id },
     });
     return readProduct;
   };
