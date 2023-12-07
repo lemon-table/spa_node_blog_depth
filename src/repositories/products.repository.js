@@ -13,4 +13,20 @@ export class ProductsRepository {
 
     return createProduct;
   };
+
+  readProducts = async () => {
+    const readProduct = await this.prisma.products.findMany({
+      select: {
+        productId: true,
+        title: true,
+        content: true,
+        status: true,
+        createdAt: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+    return readProduct;
+  };
 }

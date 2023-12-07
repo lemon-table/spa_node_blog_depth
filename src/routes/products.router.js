@@ -15,4 +15,7 @@ const productsController = new ProductsController(productsService);
 /**상품 등록 API */
 router.post("/", AuthMiddleware, productsController.createProduct);
 
+/**상품 조회 API */
+router.get("/", productsController.readProducts);
+
 export default router;

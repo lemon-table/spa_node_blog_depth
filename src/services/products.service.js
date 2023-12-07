@@ -26,4 +26,12 @@ export class ProductsService {
       createdAt: product.createdAt,
     };
   };
+
+  readProducts = async () => {
+    const products = await this.productsRepository.readProducts();
+
+    return {
+      products,
+    };
+  };
 }
