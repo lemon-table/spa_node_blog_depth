@@ -57,4 +57,27 @@ export class ProductsController {
       next(err);
     }
   };
+
+  /** 상품 수정 API */
+  updateProduct = async (req, res, next) => {
+    try {
+      const { userId } = req.user;
+      const { Id } = req.params;
+      const { title, content, status } = req.body;
+      const product = await this.productsService.updateProduct(
+        userId,
+        Id,
+        title,
+        content,
+        status
+      );
+
+      return res.status(StatusCodes.OK).json({
+        success: true,
+        message: "상품 정보를 수정했습니다.",
+      });
+    } catch (err) {
+      next(err);
+    }
+  };
 }
