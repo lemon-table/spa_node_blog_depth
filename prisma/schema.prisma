@@ -24,8 +24,7 @@ model Products{
   UserId    Int     @map("UserId")
   title     String  @map("title")
   content   String  @map("content")
-  password  String  @map("password")
-  status    String  @map("status")
+  status    Status  @default(FOR_SALE) @map("status")
   createdAt DateTime @default(now()) @map("createdAt")
   updatedAt DateTime @updatedAt @map("updatedAt")
 
@@ -34,3 +33,7 @@ model Products{
   @@map("Products")
 }
 
+enum Status {
+  FOR_SALE
+  SOLD_OUT
+}
