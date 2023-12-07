@@ -26,4 +26,17 @@ export class ProductsService {
       createdAt: product.createdAt,
     };
   };
+
+  readProducts = async (sort) => {
+    const sortStr = sort ? sort.toLowerCase() : null;
+
+    if (sortStr !== null && sortStr !== "desc" && sortStr !== "asc") {
+      throw new Error("INVALID_SORT_ERROR");
+    }
+    const products = await this.productsRepository.readProducts(sortStr);
+
+    return {
+      products,
+    };
+  };
 }

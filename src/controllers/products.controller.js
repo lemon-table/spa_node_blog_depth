@@ -25,4 +25,22 @@ export class ProductsController {
       next(err);
     }
   };
+
+  /** 상품 조회 API */
+  readProducts = async (req, res, next) => {
+    try {
+      const { sort } = req.query;
+      const products = await this.productsService.readProducts(sort);
+
+      console.log("products;" + products);
+
+      return res.status(StatusCodes.OK).json({
+        success: true,
+        message: "상품 목록이 조회되었습니다.",
+        data: products,
+      });
+    } catch (err) {
+      next(err);
+    }
+  };
 }
