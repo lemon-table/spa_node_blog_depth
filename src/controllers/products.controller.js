@@ -29,7 +29,8 @@ export class ProductsController {
   /** 상품 조회 API */
   readProducts = async (req, res, next) => {
     try {
-      const products = await this.productsService.readProducts();
+      const { sort } = req.query;
+      const products = await this.productsService.readProducts(sort);
 
       console.log("products;" + products);
 

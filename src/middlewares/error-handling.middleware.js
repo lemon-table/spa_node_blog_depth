@@ -51,5 +51,10 @@ export default function (err, req, res, next) {
     errMessage = "글내용이 없습니다.";
   }
 
+  if (err.message === "INVALID_SORT_ERROR") {
+    statusCode = StatusCodes.BAD_REQUEST;
+    errMessage = "전체조회 정렬은 asc, desc만 기입 가능합니다.";
+  }
+
   res.status(statusCode).json({ success: false, errorMessage: errMessage });
 }

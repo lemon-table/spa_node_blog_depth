@@ -14,7 +14,7 @@ export class ProductsRepository {
     return createProduct;
   };
 
-  readProducts = async () => {
+  readProducts = async (sort) => {
     const readProduct = await this.prisma.products.findMany({
       select: {
         productId: true,
@@ -24,7 +24,7 @@ export class ProductsRepository {
         createdAt: true,
       },
       orderBy: {
-        createdAt: "desc",
+        createdAt: sort ? sort : "desc",
       },
     });
     return readProduct;
