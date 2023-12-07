@@ -39,4 +39,14 @@ export class ProductsService {
       products,
     };
   };
+
+  readDetProduct = async (Id) => {
+    const product = await this.productsRepository.readDetProduct(Id);
+
+    if (!product) throw new Error("PRODUCT_DETAIL_NOT_FOUND_ERROR");
+
+    return {
+      product,
+    };
+  };
 }

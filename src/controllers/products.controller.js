@@ -32,12 +32,26 @@ export class ProductsController {
       const { sort } = req.query;
       const products = await this.productsService.readProducts(sort);
 
-      console.log("products;" + products);
-
       return res.status(StatusCodes.OK).json({
         success: true,
         message: "상품 목록이 조회되었습니다.",
         data: products,
+      });
+    } catch (err) {
+      next(err);
+    }
+  };
+
+  /** 상품 상세 조회 API */
+  readDetProduct = async (req, res, next) => {
+    try {
+      const { Id } = req.params;
+      const product = await this.productsService.readDetProduct(Id);
+
+      return res.status(StatusCodes.OK).json({
+        success: true,
+        message: "상품 상세정보가 조회되었습니다.",
+        data: product,
       });
     } catch (err) {
       next(err);

@@ -56,5 +56,10 @@ export default function (err, req, res, next) {
     errMessage = "전체조회 정렬은 asc, desc만 기입 가능합니다.";
   }
 
+  if (err.message === "PRODUCT_DETAIL_NOT_FOUND_ERROR") {
+    statusCode = StatusCodes.BAD_REQUEST;
+    errMessage = "상품ID의 상세정보가 없습니다.";
+  }
+
   res.status(statusCode).json({ success: false, errorMessage: errMessage });
 }

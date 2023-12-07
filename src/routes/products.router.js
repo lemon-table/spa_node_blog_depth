@@ -18,4 +18,7 @@ router.post("/", AuthMiddleware, productsController.createProduct);
 /**상품 조회 API */
 router.get("/", productsController.readProducts);
 
+/**상품 상세 조회 API */
+router.get("/:Id", productsController.readDetProduct);
+
 export default router;
