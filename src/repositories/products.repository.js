@@ -33,6 +33,7 @@ export class ProductsRepository {
     const readProduct = await this.prisma.products.findFirst({
       select: {
         productId: true,
+        UserId: true,
         title: true,
         content: true,
         status: true,
@@ -41,5 +42,17 @@ export class ProductsRepository {
       where: { productId: +Id },
     });
     return readProduct;
+  };
+
+  updateProduct = async (userId, Id, title, content, status) => {
+    const updateProduct = await this.prisma.products.update({
+      where: { productId: +Id, UserId: +userId },
+      data: {
+        title: title,
+        content: content,
+        status: status,
+      },
+    });
+    return updateProduct;
   };
 }
