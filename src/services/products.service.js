@@ -87,4 +87,20 @@ export class ProductsService {
       uptProduct,
     };
   };
+
+  deleteProduct = async (userId, Id) => {
+    const product = await this.productsRepository.readDetProduct(Id);
+
+    if (!product) throw new Error("PRODUCT_DETAIL_NOT_FOUND_ERROR");
+
+    // 글 수정 권한 없는 사용자의 경우
+    if (Number(product.UserId) !== userId)
+      throw new Error("NO_PERMISSION_TO_UPDATE_PRODUCT_ERROR");
+
+    const delProduct = await this.productsRepository.deleteProduct(userId, Id);
+
+    return {
+      delProduct,
+    };
+  };
 }

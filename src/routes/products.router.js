@@ -24,4 +24,7 @@ router.get("/:Id", productsController.readDetProduct);
 /**상품 수정 API */
 router.put("/:Id", AuthMiddleware, productsController.updateProduct);
 
+/**상품 삭제 API */
+router.delete("/:Id", AuthMiddleware, productsController.deleteProduct);
+
 export default router;

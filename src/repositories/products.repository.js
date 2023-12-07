@@ -55,4 +55,11 @@ export class ProductsRepository {
     });
     return updateProduct;
   };
+
+  deleteProduct = async (userId, Id) => {
+    const deleteProduct = await this.prisma.products.delete({
+      where: { productId: +Id, UserId: +userId },
+    });
+    return deleteProduct;
+  };
 }

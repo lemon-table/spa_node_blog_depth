@@ -80,4 +80,20 @@ export class ProductsController {
       next(err);
     }
   };
+
+  /** 상품 삭제 API */
+  deleteProduct = async (req, res, next) => {
+    try {
+      const { userId } = req.user;
+      const { Id } = req.params;
+      const product = await this.productsService.deleteProduct(userId, Id);
+
+      return res.status(StatusCodes.OK).json({
+        success: true,
+        message: "상품 정보를 삭제했습니다.",
+      });
+    } catch (err) {
+      next(err);
+    }
+  };
 }
