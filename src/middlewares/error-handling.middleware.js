@@ -36,5 +36,20 @@ export default function (err, req, res, next) {
     errMessage = "토큰 사용자가 존재하지 않습니다.";
   }
 
+  if (err.message === "USER_ID_NOT_FOUND_ERROR") {
+    statusCode = StatusCodes.BAD_REQUEST;
+    errMessage = "사용자 ID가 없습니다.";
+  }
+
+  if (err.message === "TITLE_NOT_FOUND_ERROR") {
+    statusCode = StatusCodes.BAD_REQUEST;
+    errMessage = "글제목이 없습니다.";
+  }
+
+  if (err.message === "CONTENT_NOT_FOUND_ERROR") {
+    statusCode = StatusCodes.BAD_REQUEST;
+    errMessage = "글내용이 없습니다.";
+  }
+
   res.status(statusCode).json({ success: false, errorMessage: errMessage });
 }
