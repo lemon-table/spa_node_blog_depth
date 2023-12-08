@@ -35,8 +35,16 @@ export class ProductsService {
     }
     const products = await this.productsRepository.readProducts(sortStr);
 
+    const formattedProducts = products.map((product) => ({
+      productId: product.productId,
+      title: product.title,
+      status: product.status,
+      createdAt: product.createdAt,
+      nickname: product.User.nickname,
+    }));
+
     return {
-      products,
+      formattedProducts,
     };
   };
 
@@ -51,6 +59,7 @@ export class ProductsService {
       content: product.content,
       status: product.status,
       createdAt: product.createdAt,
+      nickname: product.User.nickname,
     };
   };
 
