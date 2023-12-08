@@ -21,6 +21,11 @@ export class ProductsRepository {
         title: true,
         status: true,
         createdAt: true,
+        User: {
+          select: {
+            nickname: true,
+          },
+        },
       },
       orderBy: {
         createdAt: sort ? sort : "desc",
@@ -38,6 +43,11 @@ export class ProductsRepository {
         content: true,
         status: true,
         createdAt: true,
+        User: {
+          select: {
+            nickname: true,
+          },
+        },
       },
       where: { productId: +Id },
     });
