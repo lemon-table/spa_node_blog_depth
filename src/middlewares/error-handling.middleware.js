@@ -31,6 +31,11 @@ export default function (err, req, res, next) {
     errMessage = "이메일 또는 패스워드가 틀렸습니다.";
   }
 
+  if (err.message === "TOKEN_TYPE_ERROR") {
+    statusCode = StatusCodes.UNAUTHORIZED;
+    errMessage = "토큰 타입에 이상있습니다.";
+  }
+
   if (err.message === "TOKEN_USER_NOT_FOUND_ERROR") {
     statusCode = StatusCodes.UNAUTHORIZED;
     errMessage = "토큰 사용자가 존재하지 않습니다.";
